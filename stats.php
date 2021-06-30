@@ -45,6 +45,12 @@ elseif ($argv[1] == 'log') {
 	");
 }
 
+elseif ($argv[1] == 'clean') {
+	$statsDB->exec("
+		DELETE FROM 'stats' WHERE date = date();
+	");
+}
+
 else {
     echo "Use log, show or clean";
 }

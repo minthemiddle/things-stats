@@ -8,6 +8,8 @@ foreach (glob("queries/*.php") as $filename)
     include $filename;
 }
 
+// today
+$today = date('Y-m-d');
 
 $tasksCreatedToday = $thingsDB->querySingle($tasksCreatedTodayQuery);
 echo $tasksCreatedToday;

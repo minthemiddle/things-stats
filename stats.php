@@ -3,6 +3,12 @@
 $thingsDB = new SQLite3(getenv('THINGS'));
 $statsDB = new SQLite3('stats.sqlite');
 
+// Find command
+if (! isset($argv[1])) {
+    echo "Use log, show or clean";
+    die();
+}
+
 foreach (glob("queries/*.php") as $filename)
 {
     include $filename;
@@ -18,13 +24,6 @@ $totalPrivate = $thingsDB->querySingle($totalPrivateQuery);
 $createdWork = $thingsDB->querySingle($createdWorkQuery);
 $doneWork = $thingsDB->querySingle($doneWorkQuery);
 $totalWork = $thingsDB->querySingle($totalWorkQuery);
-
-
-// Find command
-if (! isset($argv[1])) {
-    echo "Use log or show argument";
-    die();
-}
 
 if ($argv[1] == 'show') {
     // Show results
@@ -47,5 +46,5 @@ elseif ($argv[1] == 'log') {
 }
 
 else {
-    echo "Use log or show";
+    echo "Use log, show or clean";
 }

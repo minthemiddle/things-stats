@@ -11,6 +11,10 @@ foreach (glob("queries/*.php") as $filename)
 // today
 $today = date('Y-m-d');
 
-$tasksCreatedToday = $thingsDB->querySingle($tasksCreatedTodayQuery);
-echo $tasksCreatedToday;
-// $enterToday = $statsDB->exec("insert into stats(date, created_private) VALUES(date(), $tasksCreatedToday)");
+// Query results
+$createdPrivate = $thingsDB->querySingle($createdPrivateQuery);
+$donePrivate = $thingsDB->querySingle($donePrivateQuery);
+$totalPrivate = $thingsDB->querySingle($totalPrivateQuery);
+$createdWork = $thingsDB->querySingle($createdWorkQuery);
+$doneWork = $thingsDB->querySingle($doneWorkQuery);
+$totalWork = $thingsDB->querySingle($totalWorkQuery);

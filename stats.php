@@ -15,7 +15,7 @@ foreach (glob("queries/*.php") as $filename)
 }
 
 // today
-$today = date('Y-m-d');
+$today = $date_for_tasks;
 
 // Query results
 $createdPrivate = $thingsDB->querySingle($createdPrivateQuery);

@@ -1,11 +1,13 @@
 <?php
 
-$createdPrivateQuery = "WITH tasks_with_creation AS (
+include "_date_for_tasks.php";
+
+$raw = "WITH tasks_with_creation AS (
 	SELECT
 		t.title as title,
 		p.title as project,
 		p.uuid as project_uuid,
-		strftime ('%Y-%m-%d',
+		strftime ('%%Y-%%m-%%d',
 			datetime (t.creationDate,
 				'unixepoch',
 				'localtime')) AS creation_date
@@ -34,6 +36,8 @@ SELECT
 FROM
 	tasks_with_creation twc
 JOIN active_projects ap on twc.project_uuid = ap.uuid
-WHERE creation_date = date()
+WHERE creation_date = '%s'
 ORDER BY
 	creation_date DESC;";
+
+$createdPrivateQuery = sprintf($raw, $date_for_tasks);

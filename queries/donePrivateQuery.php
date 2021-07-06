@@ -1,11 +1,13 @@
 <?php
 
-$donePrivateQuery = "
+include "_date_for_tasks.php";
+
+$raw = "
 WITH completed_tasks_today AS (
 	SELECT
 		t.title,
 		t.project,
-		strftime ('%Y-%m-%d',
+		strftime ('%%Y-%%m-%%d',
 			datetime (t.stopDate,
 				'unixepoch',
 				'localtime')) AS stop_date
@@ -36,5 +38,7 @@ FROM
 	completed_tasks_today ctt
 	JOIN active_projects ap ON ctt.project = ap.uuid
 WHERE
-	stop_date = date();
+	stop_date = '%s';
 ";
+
+$donePrivateQuery = sprintf($raw, $date_for_tasks);

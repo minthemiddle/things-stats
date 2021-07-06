@@ -27,7 +27,7 @@ $totalWork = $thingsDB->querySingle($totalWorkQuery);
 
 if ($argv[1] == 'show') {
     // Show results
-	echo "Today: " . $today . "\r\n" .
+	echo "Day: " . $today . "\r\n" .
 	"Created Private: " . $createdPrivate . "\r\n" . 
 	"Done Private: " . $donePrivate . "\r\n" . 
 	"Total Private: " . $totalPrivate . "\r\n" .

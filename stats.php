@@ -5,7 +5,7 @@ $statsDB = new SQLite3('stats.sqlite');
 
 // Find command
 if (! isset($argv[1])) {
-    echo "Use log, show or clean";
+    echo "Use log, show or clear";
     die();
 }
 
@@ -45,12 +45,11 @@ elseif ($argv[1] == 'log') {
 	");
 }
 
-elseif ($argv[1] == 'clean') {
-	$statsDB->exec("
-		DELETE FROM 'stats' WHERE date = date();
-	");
+elseif ($argv[1] == 'clear') {
+	$clearQueryRaw = "DELETE FROM 'stats' WHERE date = '%s';";
+	$statsDB->exec(sprintf($clearQueryRaw, $date_for_tasks));
 }
 
 else {
-    echo "Use log, show or clean";
+    echo "Use log, show or clear";
 }

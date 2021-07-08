@@ -1,3 +1,5 @@
 <?php
 
-$date_for_tasks = '2021-07-05';
+// Default: (string) date('Y-m-d')
+
+$date_for_tasks = (string) date('Y-m-d');

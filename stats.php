@@ -24,6 +24,7 @@ $totalPrivate = $thingsDB->querySingle($totalPrivateQuery);
 $createdWork = $thingsDB->querySingle($createdWorkQuery);
 $doneWork = $thingsDB->querySingle($doneWorkQuery);
 $totalWork = $thingsDB->querySingle($totalWorkQuery);
+$totalPrivateProjects = $thingsDB->query($totalPrivateProjectsQuery);
 
 if ($argv[1] == 'show') {
     // Show results
@@ -50,6 +51,13 @@ elseif ($argv[1] == 'clear') {
 	$statsDB->exec(sprintf($clearQueryRaw, $date_for_tasks));
 }
 
+elseif ($argv[1] == 'list') {
+
+	while ($row = $totalPrivateProjects->fetchArray()) {
+		echo $row[0] . ': ' . $row[1] . "\r\n";
+	}
+}
+
 else {
-    echo "Use log, show or clear";
+    echo "Use log, show, list or clear";
 }

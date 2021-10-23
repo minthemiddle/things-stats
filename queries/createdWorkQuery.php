@@ -19,7 +19,7 @@ $raw = "WITH tasks_with_creation AS (
 		uuid,
 		title,
 		CASE WHEN area in('Euumv3Pyzpv4QXbBZKmn7n',
-			'3wdSmtRBdoeCMrLSF2WKvr') THEN
+		'3wdSmtRBdoeCMrLSF2WKvr', 'ShFzcuAiwoj57Ts7BHkHi7') THEN
 			'work'
 		ELSE
 			'private'

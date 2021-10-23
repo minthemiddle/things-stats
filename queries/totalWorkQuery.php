@@ -11,7 +11,7 @@ WITH work_todos AS (
 		trashed = 0
 		AND status <> 3
 		AND a.uuid in('Euumv3Pyzpv4QXbBZKmn7n',
-			'3wdSmtRBdoeCMrLSF2WKvr')
+		'3wdSmtRBdoeCMrLSF2WKvr', 'ShFzcuAiwoj57Ts7BHkHi7')
 ),
 active_tasks AS (
 	SELECT

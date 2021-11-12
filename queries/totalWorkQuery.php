@@ -21,6 +21,7 @@ active_tasks AS (
 	WHERE
 		trashed = 0
 		AND status <> 3
+		AND start <> 2
 )
 SELECT
 	count(*) AS count_work_tasks

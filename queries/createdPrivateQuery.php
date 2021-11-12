@@ -29,6 +29,7 @@ $raw = "WITH tasks_with_creation AS (
 	WHERE
 		trashed = 0
 		AND status <> 3
+		AND start <> 2
 		AND area NOT NULL
 )
 SELECT

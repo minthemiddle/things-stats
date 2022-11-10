@@ -1,6 +1,8 @@
 <?php
 
-$totalPrivateQuery = "
+include "_work_areas.php";
+
+$raw = "
 WITH work_todos AS (
 	SELECT
 		*
@@ -10,8 +12,7 @@ WITH work_todos AS (
 	WHERE
 		trashed = 0
 		AND status <> 3
-		AND a.uuid not in('Euumv3Pyzpv4QXbBZKmn7n',
-		'3wdSmtRBdoeCMrLSF2WKvr', 'ShFzcuAiwoj57Ts7BHkHi7')
+		AND a.uuid not in %s
 ),
 active_tasks AS (
 	SELECT
@@ -32,3 +33,5 @@ ORDER BY
 	count(*)
 	DESC;
 ";
+
+$totalPrivateQuery = sprintf($raw, $work_areas);

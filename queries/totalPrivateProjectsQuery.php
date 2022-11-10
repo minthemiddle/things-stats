@@ -1,12 +1,13 @@
 <?php
 
-$totalPrivateProjectsQuery = "
+include "_work_areas.php";
+
+$raw = "
 WITH projects AS (
 	SELECT
 		uuid,
 		title,
-		CASE WHEN area in('Euumv3Pyzpv4QXbBZKmn7n',
-		'3wdSmtRBdoeCMrLSF2WKvr', 'ShFzcuAiwoj57Ts7BHkHi7') THEN
+		CASE WHEN area in %s THEN
 			'work'
 		ELSE
 			'private'
@@ -37,3 +38,5 @@ where p.type = 'private'
 group by p.title
 order by count(*) desc;
 ";
+
+$totalPrivateProjectsQuery = sprintf($raw, $work_areas);

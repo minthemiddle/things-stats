@@ -1,6 +1,7 @@
 <?php
 
 include "_date_for_tasks.php";
+include "_work_areas.php";
 
 $raw = "WITH tasks_with_creation AS (
 	SELECT
@@ -18,8 +19,7 @@ $raw = "WITH tasks_with_creation AS (
 	SELECT
 		uuid,
 		title,
-		CASE WHEN area in('Euumv3Pyzpv4QXbBZKmn7n',
-		'3wdSmtRBdoeCMrLSF2WKvr', 'ShFzcuAiwoj57Ts7BHkHi7') THEN
+		CASE WHEN area in %s THEN
 			'work'
 		ELSE
 			'private'
@@ -41,4 +41,4 @@ WHERE creation_date = '%s'
 ORDER BY
 	creation_date DESC;";
 
-$createdPrivateQuery = sprintf($raw, $date_for_tasks);
+$createdPrivateQuery = sprintf($raw, $work_areas, $date_for_tasks);

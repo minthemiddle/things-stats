@@ -1,6 +1,8 @@
 <?php
 
-$totalWorkQuery="
+include "_work_areas.php";
+
+$raw="
 WITH work_todos AS (
 	SELECT
 		*
@@ -10,8 +12,7 @@ WITH work_todos AS (
 	WHERE
 		trashed = 0
 		AND status <> 3
-		AND a.uuid in('Euumv3Pyzpv4QXbBZKmn7n',
-		'3wdSmtRBdoeCMrLSF2WKvr', 'ShFzcuAiwoj57Ts7BHkHi7')
+		AND a.uuid in %s
 ),
 active_tasks AS (
 	SELECT
@@ -32,3 +33,5 @@ ORDER BY
 	count(*)
 	DESC;
 ";
+
+$totalWorkQuery = sprintf($raw, $work_areas);

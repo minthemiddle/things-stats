@@ -1,6 +1,7 @@
 <?php
 
 include "_date_for_tasks.php";
+include "_work_areas.php";
 
 $raw = "
 WITH completed_tasks_today AS (
@@ -19,8 +20,7 @@ active_projects AS (
 	SELECT
 		uuid,
 		title,
-		CASE WHEN area in('Euumv3Pyzpv4QXbBZKmn7n',
-		'3wdSmtRBdoeCMrLSF2WKvr', 'ShFzcuAiwoj57Ts7BHkHi7') THEN
+		CASE WHEN area in %s THEN
 			'work'
 		ELSE
 			'private'
@@ -41,4 +41,4 @@ WHERE
 	stop_date = '%s';
 ";
 
-$donePrivateQuery = sprintf($raw, $date_for_tasks);
+$donePrivateQuery = sprintf($raw, $work_areas, $date_for_tasks);

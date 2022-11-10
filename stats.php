@@ -3,9 +3,11 @@
 $thingsDB = new SQLite3(getenv('THINGS'));
 $statsDB = new SQLite3('stats.sqlite');
 
+$help = "Use log, show, clear, work, private";
+
 // Find command
 if (! isset($argv[1])) {
-    echo "Use log, show or clear";
+    echo $help;
     die();
 }
 
@@ -59,5 +61,5 @@ elseif ($argv[1] == 'list') {
 }
 
 else {
-    echo "Use log, show, list or clear";
+    echo $help;
 }

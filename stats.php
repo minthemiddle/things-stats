@@ -28,6 +28,7 @@ $doneWork = $thingsDB->querySingle($doneWorkQuery);
 $totalWork = $thingsDB->querySingle($totalWorkQuery);
 $totalPrivateProjects = $thingsDB->query($totalPrivateProjectsQuery);
 $totalWorkProjects = $thingsDB->query($totalWorkProjectsQuery);
+$activeWorkProjects = $thingsDB->query($activeWorkProjectsQuery);
 
 if ($argv[1] == 'show') {
     // Show results
@@ -66,6 +67,13 @@ elseif ($argv[1] == 'work') {
 	while ($row = $totalWorkProjects->fetchArray()) {
 		echo $row[0] . ': ' . $row[1] . "\r\n";
 	}
+}
+
+elseif ($argv[1] == 'review') {
+
+    while ($row = $activeWorkProjects->fetchArray()) {
+        echo rawurlencode($row[0]) . "%0A";
+    }
 }
 
 else {

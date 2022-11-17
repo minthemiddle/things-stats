@@ -59,21 +59,18 @@ elseif ($argv[1] == 'clear') {
 }
 
 elseif ($argv[1] == 'private') {
-
     while ($row = $totalPrivateProjects->fetchArray()) {
         echo $row[0] . ': ' . $row[1] . "\r\n";
     }
 }
 
 elseif ($argv[1] == 'work') {
-
     while ($row = $totalWorkProjects->fetchArray()) {
         echo $row[0] . ': ' . $row[1] . "\r\n";
     }
 }
 
 elseif ($argv[1] == 'review') {
-
     while ($row = $activeWorkProjects->fetchArray()) {
         echo rawurlencode($row[0]) . "%0A";
     }

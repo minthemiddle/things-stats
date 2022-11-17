@@ -20,6 +20,7 @@ foreach (glob("queries/*.php") as $filename)
 $today = $date_for_tasks;
 
 // Query results
+$debugResult = $thingsDB->query($debugQuery);
 $createdPrivate = $thingsDB->querySingle($createdPrivateQuery);
 $donePrivate = $thingsDB->querySingle($donePrivateQuery);
 $totalPrivate = $thingsDB->querySingle($totalPrivateQuery);
@@ -73,6 +74,12 @@ elseif ($argv[1] == 'review') {
 
     while ($row = $activeWorkProjects->fetchArray()) {
         echo rawurlencode($row[0]) . "%0A";
+    }
+}
+
+elseif ($argv[1] == 'debug') {
+    while ($row = $debugResult->fetchArray()) {
+        var_dump($row);
     }
 }
 

@@ -16,7 +16,7 @@ WITH projects AS (
 		TMTask t
 	WHERE
 		trashed = 0
-		AND status <> 3
+		AND status not in (2, 3)
 		AND area NOT NULL
 ),
 tasks AS (
@@ -26,7 +26,7 @@ tasks AS (
 		TMTask
 	WHERE
 		trashed = 0
-		AND status <> 3
+		AND status not in (2, 3)
 )
 SELECT
 	p.title,

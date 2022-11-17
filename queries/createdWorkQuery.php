@@ -28,7 +28,7 @@ $raw = "WITH tasks_with_creation AS (
 		TMTask t
 	WHERE
 		trashed = 0
-		AND status <> 3
+		AND status not in (2, 3)
 		AND start <> 2
 		AND area NOT NULL
 )

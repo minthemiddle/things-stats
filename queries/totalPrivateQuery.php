@@ -11,7 +11,7 @@ WITH work_todos AS (
 		JOIN TMArea a ON t.area = a.uuid
 	WHERE
 		trashed = 0
-		AND status <> 3
+		AND status not in (2, 3)
 		AND a.uuid not in %s
 ),
 active_tasks AS (
@@ -21,7 +21,7 @@ active_tasks AS (
 		TMTask t
 	WHERE
 		trashed = 0
-		AND status <> 3
+		AND status not in (2, 3)
 		AND start <> 2
 )
 SELECT

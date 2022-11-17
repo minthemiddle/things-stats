@@ -1,6 +1,6 @@
 <?php
 
-include "_work_areas.php";
+require "_work_areas.php";
 
 $raw = "
 WITH projects AS (

@@ -1,7 +1,7 @@
 <?php
 
-include "_date_for_tasks.php";
-include "_work_areas.php";
+require "_date_for_tasks.php";
+require "_work_areas.php";
 
 $raw = "
 WITH completed_tasks_today AS (

@@ -33,41 +33,43 @@ $activeWorkProjects = $thingsDB->query($activeWorkProjectsQuery);
 
 if ($argv[1] == 'show') {
     // Show results
-	echo "Day: " . $today . "\r\n" .
-	"Created Private: " . $createdPrivate . "\r\n" . 
-	"Done Private: " . $donePrivate . "\r\n" . 
-	"Total Private: " . $totalPrivate . "\r\n" .
-	"Created Work: " . $createdWork . "\r\n" . 
-	"Done Work: " . $doneWork . "\r\n" .
-	"Total Work: " . $totalWork . "\r\n" . 
-	"Total: " . $totalPrivate + $totalWork . "\r\n";
+    echo "Day: " . $today . "\r\n" .
+    "Created Private: " . $createdPrivate . "\r\n" .
+    "Done Private: " . $donePrivate . "\r\n" .
+    "Total Private: " . $totalPrivate . "\r\n" .
+    "Created Work: " . $createdWork . "\r\n" .
+    "Done Work: " . $doneWork . "\r\n" .
+    "Total Work: " . $totalWork . "\r\n" .
+    "Total: " . $totalPrivate + $totalWork . "\r\n";
 }
 
 elseif ($argv[1] == 'log') {
-	// Enter results in stats db
-    $statsDB->exec("
+    // Enter results in stats db
+    $statsDB->exec(
+        "
 		insert into stats(date, created_private, done_private, total_private, created_work, done_work, total_work) 
 		VALUES('$today', $createdPrivate, $donePrivate, $totalPrivate, $createdWork, $doneWork, $totalWork)
-	");
+	"
+    );
 }
 
 elseif ($argv[1] == 'clear') {
-	$clearQueryRaw = "DELETE FROM 'stats' WHERE date = '%s';";
-	$statsDB->exec(sprintf($clearQueryRaw, $date_for_tasks));
+    $clearQueryRaw = "DELETE FROM 'stats' WHERE date = '%s';";
+    $statsDB->exec(sprintf($clearQueryRaw, $date_for_tasks));
 }
 
 elseif ($argv[1] == 'private') {
 
-	while ($row = $totalPrivateProjects->fetchArray()) {
-		echo $row[0] . ': ' . $row[1] . "\r\n";
-	}
+    while ($row = $totalPrivateProjects->fetchArray()) {
+        echo $row[0] . ': ' . $row[1] . "\r\n";
+    }
 }
 
 elseif ($argv[1] == 'work') {
 
-	while ($row = $totalWorkProjects->fetchArray()) {
-		echo $row[0] . ': ' . $row[1] . "\r\n";
-	}
+    while ($row = $totalWorkProjects->fetchArray()) {
+        echo $row[0] . ': ' . $row[1] . "\r\n";
+    }
 }
 
 elseif ($argv[1] == 'review') {

@@ -77,9 +77,34 @@ elseif ($argv[1] == 'review') {
 }
 
 elseif ($argv[1] == 'debug') {
+    $i = 0;
+    $data = array();
+    $data['type'] = 'project';
+    $data['attributes']['title'] = 'Go shopping';
+
     while ($row = $debugResult->fetchArray()) {
-        var_dump($row);
+        $data['attributes']['items'][$i]['type'] = 'to-do';
+        $data['attribute']['items'][$i]['attributes']['title'] = $row['title'];
+        $i++;
     }
+
+    $things_json = json_encode($data);
+    $things_command = 'open \'things:///json?data=[' . $things_json . ']\'';
+
+    echo $things_command;
+
+    // shell_exec($things_json);
+
+    // while ($row = $debugResult->fetchArray()) {
+    //     echo $row['uuid'] . "\r\n";
+    // }
+
+    // $data['type'] = 'project';
+    // $data['attributes']['title'] = 'Go shopping';
+    // $data['items'][0]['type'] = 'to-do';
+    // $data['items'][0]['attributes']['title'] = 'Bread';
+    // $data['items'][1]['type'] = 'to-do';
+    // $data['items'][1]['attributes']['title'] = 'Milk';
 }
 
 else {

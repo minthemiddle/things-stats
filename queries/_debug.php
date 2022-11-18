@@ -26,11 +26,13 @@ active_tasks AS (
 )
 SELECT
     a.title,
-    a.status
+    a.status,
+    a.uuid
 FROM
     active_tasks a
     JOIN work_todos w ON a.project = w.uuid
 WHERE a.project = 'R2eYB3aXVLNs9N8zaJiacb'
+limit 2
 ;
 ";
 

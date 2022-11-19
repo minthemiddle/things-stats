@@ -70,41 +70,31 @@ elseif ($argv[1] == 'work') {
     }
 }
 
-elseif ($argv[1] == 'review') {
-    while ($row = $activeWorkProjects->fetchArray()) {
-        echo rawurlencode($row[0]) . "%0A";
-    }
-}
+elseif ($argv[1] == 'work-review') {
+	$i = 0;
+    $current_week_number = idate('W', time());
 
-elseif ($argv[1] == 'debug') {
-    $i = 0;
     $data = array();
     $data['type'] = 'project';
-    $data['attributes']['title'] = 'Go shopping';
+    $data['attributes']['title'] = '🎥 Review Work - Week ' . $current_week_number;
+    $data['attributes']['area-id'] = '9nNDw4EjbzdPhQkKshBeAZ';
 
-    while ($row = $debugResult->fetchArray()) {
+
+    while ($row = $activeWorkProjects->fetchArray()) {
         $data['attributes']['items'][$i]['type'] = 'to-do';
-        $data['attribute']['items'][$i]['attributes']['title'] = $row['title'];
+        $data['attributes']['items'][$i]['attributes']['title'] = $row['title'];
+        $data['attributes']['items'][$i]['attributes']['notes'] = "[Link](things:///show?id=" . $row['uuid'] . ")";
         $i++;
     }
 
     $things_json = json_encode($data);
     $things_command = 'open \'things:///json?data=[' . $things_json . ']\'';
 
-    echo $things_command;
+    shell_exec($things_command);
+}
 
-    // shell_exec($things_json);
-
-    // while ($row = $debugResult->fetchArray()) {
-    //     echo $row['uuid'] . "\r\n";
-    // }
-
-    // $data['type'] = 'project';
-    // $data['attributes']['title'] = 'Go shopping';
-    // $data['items'][0]['type'] = 'to-do';
-    // $data['items'][0]['attributes']['title'] = 'Bread';
-    // $data['items'][1]['type'] = 'to-do';
-    // $data['items'][1]['attributes']['title'] = 'Milk';
+elseif ($argv[1] == 'debug') {
+    $i = 0;
 }
 
 else {

@@ -29,7 +29,8 @@ tasks AS (
         AND status <> 3
 )
 SELECT
-    p.title
+    p.title,
+    t.uuid
 FROM
     tasks t
     JOIN projects p ON t.project = p.uuid

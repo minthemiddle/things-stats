@@ -11,8 +11,7 @@ if (! isset($argv[1])) {
     die();
 }
 
-foreach (glob("queries/*.php") as $filename)
-{
+foreach (glob("queries/*.php") as $filename) {
     include $filename;
 }
 
@@ -41,9 +40,7 @@ if ($argv[1] == 'show') {
     "Done Work: " . $doneWork . "\r\n" .
     "Total Work: " . $totalWork . "\r\n" .
     "Total: " . $totalPrivate + $totalWork . "\r\n";
-}
-
-elseif ($argv[1] == 'log') {
+} elseif ($argv[1] == 'log') {
     // Enter results in stats db
     $statsDB->exec(
         "
@@ -51,27 +48,19 @@ elseif ($argv[1] == 'log') {
 		VALUES('$today', $createdPrivate, $donePrivate, $totalPrivate, $createdWork, $doneWork, $totalWork)
 	"
     );
-}
-
-elseif ($argv[1] == 'clear') {
+} elseif ($argv[1] == 'clear') {
     $clearQueryRaw = "DELETE FROM 'stats' WHERE date = '%s';";
     $statsDB->exec(sprintf($clearQueryRaw, $date_for_tasks));
-}
-
-elseif ($argv[1] == 'private') {
+} elseif ($argv[1] == 'private') {
     while ($row = $totalPrivateProjects->fetchArray()) {
         echo $row[0] . ': ' . $row[1] . "\r\n";
     }
-}
-
-elseif ($argv[1] == 'work') {
+} elseif ($argv[1] == 'work') {
     while ($row = $totalWorkProjects->fetchArray()) {
         echo $row[0] . ': ' . $row[1] . "\r\n";
     }
-}
-
-elseif ($argv[1] == 'work-review') {
-	$i = 0;
+} elseif ($argv[1] == 'work-review') {
+    $i = 0;
     $current_week_number = idate('W', time());
 
     $data = array();
@@ -91,12 +80,8 @@ elseif ($argv[1] == 'work-review') {
     $things_command = 'open \'things:///json?data=[' . $things_json . ']\'';
 
     shell_exec($things_command);
-}
-
-elseif ($argv[1] == 'debug') {
+} elseif ($argv[1] == 'debug') {
     $i = 0;
-}
-
-else {
+} else {
     echo $help;
 }

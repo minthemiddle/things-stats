@@ -29,6 +29,7 @@ $totalWork = $thingsDB->querySingle($totalWorkQuery);
 $totalPrivateProjects = $thingsDB->query($totalPrivateProjectsQuery);
 $totalWorkProjects = $thingsDB->query($totalWorkProjectsQuery);
 $activeWorkProjects = $thingsDB->query($activeWorkProjectsQuery);
+$activePrivateProjects = $thingsDB->query($activePrivateProjectsQuery);
 
 if ($argv[1] == 'show') {
     // Show results
@@ -70,6 +71,27 @@ if ($argv[1] == 'show') {
 
 
     while ($row = $activeWorkProjects->fetchArray()) {
+        $data['attributes']['items'][$i]['type'] = 'to-do';
+        $data['attributes']['items'][$i]['attributes']['title'] = $row['title'];
+        $data['attributes']['items'][$i]['attributes']['notes'] = "[Link](things:///show?id=" . $row['uuid'] . ")";
+        $i++;
+    }
+
+    $things_json = json_encode($data);
+    $things_command = 'open \'things:///json?data=[' . $things_json . ']\'';
+
+    shell_exec($things_command);
+} elseif ($argv[1] == 'private-review') {
+    $i = 0;
+    $current_week_number = idate('W', time());
+
+    $data = array();
+    $data['type'] = 'project';
+    $data['attributes']['title'] = '🎥 Review Private - Week ' . $current_week_number;
+    $data['attributes']['area-id'] = 'SH2dsLxMjsnK99z1haAXqH';
+
+
+    while ($row = $activePrivateProjects->fetchArray()) {
         $data['attributes']['items'][$i]['type'] = 'to-do';
         $data['attributes']['items'][$i]['attributes']['title'] = $row['title'];
         $data['attributes']['items'][$i]['attributes']['notes'] = "[Link](things:///show?id=" . $row['uuid'] . ")";

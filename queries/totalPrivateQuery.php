@@ -12,6 +12,7 @@ WITH work_todos AS (
 	WHERE
 		trashed = 0
 		AND status not in (2, 3)
+		AND start not in (2)
 		AND a.uuid not in %s
 ),
 active_tasks AS (
@@ -22,6 +23,7 @@ active_tasks AS (
 	WHERE
 		trashed = 0
 		AND status not in (2, 3)
+		AND start not in (2)
 		AND start <> 2
 )
 SELECT

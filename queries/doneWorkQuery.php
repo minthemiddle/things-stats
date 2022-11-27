@@ -30,6 +30,7 @@ active_projects AS (
 	WHERE
 		trashed = 0
 		AND status not in (2, 3)
+		AND start not in (2)
 		AND area NOT NULL
 )
 SELECT

@@ -36,9 +36,9 @@ SELECT
 FROM
     tasks t
     JOIN projects p ON t.project = p.uuid
-where p.type = 'work'
+where p.type = 'private'
 group by p.title
 order by count(*) desc;
 ";
 
-$activeWorkProjectsQuery = sprintf($raw, $work_areas);
+$activePrivateProjectsQuery = sprintf($raw, $work_areas);

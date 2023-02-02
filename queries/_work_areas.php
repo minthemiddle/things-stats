@@ -5,5 +5,6 @@ $work_areas = "(
 	'6QwExiVvRFBQE2Nfyq8axY',
 	'nNDw4EjbzdPhQkKshBeAZ', 
 	'SxYkQSSBP7SYGh89aQMPy1',
-	'9nNDw4EjbzdPhQkKshBeAZ'
+	'9nNDw4EjbzdPhQkKshBeAZ',
+	'TCfVeZcMSqBRirpTdchrtU'
 )";

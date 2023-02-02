@@ -1,3 +1,4 @@
 stats.sqlite
 .DS_Store
 out
+*.csv
